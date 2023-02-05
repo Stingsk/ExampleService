@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ExampleService.Internal\ExampleService.Internal.csproj" />
+      <ProjectReference Include="..\ExampleService.Logic\ExampleService.Logic.csproj" />
       <ProjectReference Include="..\ExampleService.Сontracts\ExampleService.Сontracts.csproj" />
     </ItemGroup>
 

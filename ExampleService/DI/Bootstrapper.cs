@@ -18,6 +18,7 @@ public class Bootstrapper
         builder.RegisterInstance(configuration).AsSelf();
 
         builder.RegisterModule<DataServiceModule>();
-        builder.RegisterModule<DataServiceModule>();
+        builder.RegisterModule<ServiceModule>();
+        builder.RegisterModule<YandexProviderModule>();
     }
 }

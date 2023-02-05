@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using ExampleService.Logic;
+using ExampleService.Logic.Search;
 
 namespace ExampleService.DI.Modules;
 
@@ -11,13 +13,15 @@ public class ServiceModule: Module
     {
         base.Load(builder);
 
-        RegisterExtractors(builder);
+        RegisterLogic(builder);
     }
 
 
-    private void RegisterExtractors(ContainerBuilder builder)
+    private void RegisterLogic(ContainerBuilder builder)
     {
-        //builder.RegisterType<HttpHeadersHelper>().As<IHttpHeadersHelper>();
+        builder.RegisterType<SearchService>().As<ISearchService>();
+        builder.RegisterType<TaxiManager>().As<ITaxiManager>();;
+        builder.RegisterType<SearchRequestMapper>().SingleInstance();
+        builder.RegisterType<SearchResponseMapper>().SingleInstance();
     }
-
 }

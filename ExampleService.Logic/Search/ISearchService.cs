@@ -1,6 +1,8 @@
-﻿namespace ExampleService.Logic.Search;
+﻿using ExampleService.Сontracts.Search;
 
-public class ISearchService
+namespace ExampleService.Logic.Search;
+
+public interface ISearchService
 {
-    
+    public Task<SearchResponse> Search(SearchRequest searchRequest);
 }

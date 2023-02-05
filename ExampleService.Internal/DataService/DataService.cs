@@ -32,7 +32,7 @@ public class DataService : IDataService
     {
         var value = await _client.Get(orderId);
         var order = JsonConvert.DeserializeObject<Order>(value, SerializerSettings);
-        return await Task.FromResult(order) ?? Task.FromResult<>(null);
+        return await Task.FromResult(order) ?? throw new InvalidOperationException();
     }
 
     public async Task<string> SavePassengerInfo(PassengerInfo passengerInfo)
@@ -48,7 +48,7 @@ public class DataService : IDataService
     {
         var value = await _client.Get(orderId);
         var passengerInfos = JsonConvert.DeserializeObject<List<PassengerInfo>>(value, SerializerSettings);
-        return await Task.FromResult(passengerInfos) ?? Task.FromResult<>(null);
+        return await Task.FromResult(passengerInfos) ?? throw new InvalidOperationException();
     }
 
     public async Task<string> SaveRouteInfo(RouteInfo routeInfo)
@@ -64,6 +64,6 @@ public class DataService : IDataService
     {
         var value = await _client.Get(orderId);
         var routeInfos = JsonConvert.DeserializeObject<List<RouteInfo>>(value, SerializerSettings);
-        return await Task.FromResult(routeInfos) ?? Task.FromResult<>(null);
+        return await Task.FromResult(routeInfos) ?? throw new InvalidOperationException();
     }
 }

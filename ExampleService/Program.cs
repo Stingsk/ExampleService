@@ -58,6 +58,7 @@ namespace ExampleService
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Critical);
                 })
+                .ConfigureWebHostDefaults(b => b.Configure(app => {}))
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 }

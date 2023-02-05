@@ -25,7 +25,7 @@ public interface IDataService
     /// Сохранить данные пассажира
     /// </summary>
     /// <param name="passengerInfo">Пассажир</param>
-    Task SavePassengerInfo(PassengerInfo passengerInfo);
+    Task<string> SavePassengerInfo(PassengerInfo passengerInfo);
 
     /// <summary>
     /// Получить всех пассажиров заказа
@@ -38,7 +38,7 @@ public interface IDataService
     /// Сохранить поездку для заказа
     /// </summary>
     /// <param name="routeInfo">Поездка</param>
-    Task SaveOrder(RouteInfo routeInfo);
+    Task<string> SaveRouteInfo(RouteInfo routeInfo);
 
     /// <summary>
     /// Получить заказ

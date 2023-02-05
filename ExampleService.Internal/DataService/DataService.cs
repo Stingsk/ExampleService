@@ -19,33 +19,51 @@ public class DataService : IDataService
         _logger = logger;
     }
 
-    public Task<string> SaveOrder(Order order)
+    public async Task<string> SaveOrder(Order order)
     {
-        throw new NotImplementedException();
+        var orderId = order.OrderId.ToString();
+        string value = JsonConvert.SerializeObject(order, SerializerSettings);
+        await _client.Set(value, orderId);
+
+        return orderId;
     }
 
-    public Task<Order> GetOrder(string orderId)
+    public async Task<Order> GetOrder(string orderId)
     {
-        throw new NotImplementedException();
+        var value = await _client.Get(orderId);
+        var order = JsonConvert.DeserializeObject<Order>(value, SerializerSettings);
+        return await Task.FromResult(order) ?? Task.FromResult<>(null);
     }
 
-    public Task SavePassengerInfo(PassengerInfo passengerInfo)
+    public async Task<string> SavePassengerInfo(PassengerInfo passengerInfo)
     {
-        throw new NotImplementedException();
+        var passengerId = passengerInfo.PassengerId.ToString();
+        string value = JsonConvert.SerializeObject(passengerInfo, SerializerSettings);
+        await _client.Set(value, passengerId);
+
+        return passengerId;
     }
 
-    public Task<List<PassengerInfo>> GetPassengerInfos(string orderId)
+    public async Task<List<PassengerInfo>> GetPassengerInfos(string orderId)
     {
-        throw new NotImplementedException();
+        var value = await _client.Get(orderId);
+        var passengerInfos = JsonConvert.DeserializeObject<List<PassengerInfo>>(value, SerializerSettings);
+        return await Task.FromResult(passengerInfos) ?? Task.FromResult<>(null);
     }
 
-    public Task SaveOrder(RouteInfo routeInfo)
+    public async Task<string> SaveRouteInfo(RouteInfo routeInfo)
     {
-        throw new NotImplementedException();
+        var routeId = routeInfo.RouteId.ToString();
+        string value = JsonConvert.SerializeObject(routeInfo, SerializerSettings);
+        await _client.Set(value, routeId);
+
+        return routeId;
     }
 
-    public Task<List<RouteInfo>> GetRouteInfos(string orderId)
+    public async Task<List<RouteInfo>> GetRouteInfos(string orderId)
     {
-        throw new NotImplementedException();
+        var value = await _client.Get(orderId);
+        var routeInfos = JsonConvert.DeserializeObject<List<RouteInfo>>(value, SerializerSettings);
+        return await Task.FromResult(routeInfos) ?? Task.FromResult<>(null);
     }
 }
